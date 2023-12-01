@@ -2,7 +2,7 @@
 
 ## Files in repository:
 
-### 1. **SQLDatabaseInitialization**: 
+### 1. **SQLDatabaseInitialization.py**: 
  - Copy of google colab notebook where we connect to our SQL database, and create/populate the necessary tables
 
 ### 2. **GenerateCodes.py**: 
