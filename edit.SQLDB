@@ -111,13 +111,44 @@ rs=cursor.execute(sql_str)
 rs=cursor.fetchall()
 print(rs)
 
-
-# Populate Table COURSES as data in this table is fixed from start
+# Populate data in course table
 
 print("=== Inserting a record into Courses")
-sql_str=f"INSERT INTO Courses(id, name) VALUES ('1', 'Chemistry'),  ('2', 'Computer Science'),  ('3', 'Physics'), ('4', 'Biology'), ('5', 'Discrete Mathematics'), ('6', 'Probability & Statistics');"
-print(sql_str)
-cursor.execute(sql_str)
+insert_courses='''
+INSERT INTO courses (Course_name)
+VALUES
+    ('Chemistry'),
+    ('Computer Science),
+    ('Physics'),
+    ('Biology'),
+    ('Discrete Mathematics'),
+    ('Probability & Statistics),
+    ('History'),
+    ('Geometry')
+    ('Art'),
+    ('Economics')
+;'''
+cursor.execute(insert_courses)
+cnx.commit() # commit is required when you run INSERT statement, to persist new data to tables
+
+# Populate data in course table
+
+print("=== Inserting a record into Courses")
+insert_courses='''
+INSERT INTO courses (Course_name)
+VALUES
+    ('Chemistry'),
+    ('Computer Science),
+    ('Physics'),
+    ('Biology'),
+    ('Discrete Mathematics'),
+    ('Probability & Statistics),
+    ('History'),
+    ('Geometry')
+    ('Art'),
+    ('Economics')
+;'''
+cursor.execute(insert_courses)
 cnx.commit() # commit is required when you run INSERT statement, to persist new data to tables
 
 
