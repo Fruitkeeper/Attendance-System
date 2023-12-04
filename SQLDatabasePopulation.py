@@ -65,3 +65,36 @@ print(sql_str)
 rs=cursor.execute(sql_str)
 rs=cursor.fetchall()
 print(rs)
+
+
+# Populate Table STUDENTS
+
+print("=== Inserting records into Students")
+
+sql_str='''
+    INSERT INTO Students (first_name, last_name, email, password)
+    VALUES
+        ('John', 'Doe', 'john.doe@example.com', 'password123'),
+        ('Jane', 'Smith', 'jane.smith@example.com', 'pass456'),
+        ('Bob', 'Johnson', 'bob.johnson@example.com', 'secure789'),
+        ('Alice', 'Williams', 'alice.w@example.com', 'alicerules'),
+        ('Charlie', 'Brown', 'charlie.b@example.com', 'brown123'),
+        ('Eva', 'Miller', 'eva.m@example.com', 'evapass'),
+        ('David', 'Wilson', 'david.w@example.com', 'davidpass'),
+        ('Grace', 'Hill', 'grace.h@example.com', 'grace123'),
+        ('Sam', 'Parker', 'sam.p@example.com', 'sampass'),
+        ('Linda', 'Collins', 'linda.c@example.com', 'lindapass')
+    ;
+    '''
+print(sql_str)
+cursor.execute(sql_str)
+cnx.commit()
+
+
+#Check to confirm Table STUDENTS was populated correctly
+
+sql_str='SELECT * FROM Students;'
+print(sql_str)
+rs=cursor.execute(sql_str)
+rs=cursor.fetchall()
+print(rs)
