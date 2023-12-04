@@ -91,7 +91,7 @@ sql_str6='''CREATE TABLE IF NOT EXISTS Enrollments (
     id INT  NOT NULL AUTO_INCREMENT,
     Student_id INT,
     Class_id INT,
-    PRIMARY KEY(record_id),
+    PRIMARY KEY(id),
     FOREIGN KEY (Student_id) REFERENCES Students(id),
     FOREIGN KEY (Class_id) REFERENCES Classes(id)
 );'''
@@ -108,6 +108,7 @@ sql_str7='''CREATE TABLE IF NOT EXISTS Attendance_Records (
     Late BIT,
     Date DATE,
     PRIMARY KEY(id),
+    FOREIGN KEY (enrollment_id) REFERENCES Enrollments(id)
 );'''
 print(sql_str7)
 cursor.execute(sql_str7)
