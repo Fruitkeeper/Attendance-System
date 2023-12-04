@@ -40,3 +40,28 @@ print(sql_str)
 rs=cursor.execute(sql_str)
 rs=cursor.fetchall()
 print(rs)
+
+
+
+# Populate Table PROFESSORS 
+print("=== Inserting a record into Professors")
+sql_str='''
+    INSERT INTO Professors (first_name, last_name, email, password)
+    VALUES
+        ('Professor1', 'Lastname1', 'prof1@example.com', 'prof1pass'),
+        ('Professor2', 'Lastname2', 'prof2@example.com', 'prof2pass'),
+        ('Professor3', 'Lastname3', 'prof3@example.com', 'prof3pass'),
+        ('Professor4', 'Lastname4', 'prof4@example.com', 'prof4pass')
+    ;
+    '''
+print(sql_str)
+cursor.execute(sql_str)
+cnx.commit()
+
+#Check to confirm Table PROFESSORS was populated correctly
+
+sql_str='SELECT * FROM Professors;'
+print(sql_str)
+rs=cursor.execute(sql_str)
+rs=cursor.fetchall()
+print(rs)
