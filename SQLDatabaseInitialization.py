@@ -84,28 +84,30 @@ sql_str5='''CREATE TABLE IF NOT EXISTS Codes (
 print(sql_str5)
 cursor.execute(sql_str5)
 
-# Attendance_Records Table
-sql_str6='''CREATE TABLE IF NOT EXISTS Attendance_Records (
-    id INT  NOT NULL AUTO_INCREMENT,
-    enrollment_id INT,
-    Present BIT,
-    Late BIT,
-    Date DATE,
-    PRIMARY KEY(id),
-);'''
-print(sql_str6)
-cursor.execute(sql_str6)
-
 
 
 # Enrollments Table
-sql_str7='''CREATE TABLE IF NOT EXISTS Enrollments (
+sql_str6='''CREATE TABLE IF NOT EXISTS Enrollments (
     id INT  NOT NULL AUTO_INCREMENT,
     Student_id INT,
     Class_id INT,
     PRIMARY KEY(record_id),
     FOREIGN KEY (Student_id) REFERENCES Students(id),
     FOREIGN KEY (Class_id) REFERENCES Classes(id)
+);'''
+print(sql_str6)
+cursor.execute(sql_str6)
+
+
+
+# Attendance_Records Table
+sql_str7='''CREATE TABLE IF NOT EXISTS Attendance_Records (
+    id INT NOT NULL AUTO_INCREMENT,
+    enrollment_id INT,
+    Present BIT,
+    Late BIT,
+    Date DATE,
+    PRIMARY KEY(id),
 );'''
 print(sql_str7)
 cursor.execute(sql_str7)
