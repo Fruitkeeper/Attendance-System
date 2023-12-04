@@ -98,3 +98,35 @@ print(sql_str)
 rs=cursor.execute(sql_str)
 rs=cursor.fetchall()
 print(rs)
+
+
+
+# Populate Table CLASSES
+print("=== Inserting records into Classes")
+
+sql_str='''
+    INSERT INTO Classes (class_name, Professor_id, Course_id)
+    VALUES
+        ('Databases', 1, 2),
+        ('Math', 1, 5),
+        ('Class3', 1, 6),
+        ('Class4', 2, 7),
+        ('Class5', 2, 8),
+        ('Class6', 2, 4),
+        ('Class7', 3, 5),
+        ('Class8', 3, 6)
+    ;
+    '''
+
+print(sql_str)
+cursor.execute(sql_str)
+cnx.commit()
+
+
+#Check to confirm Table CLASSES was populated correctly
+
+sql_str='SELECT * FROM Classes;'
+print(sql_str)
+rs=cursor.execute(sql_str)
+rs=cursor.fetchall()
+print(rs)
