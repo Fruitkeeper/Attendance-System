@@ -120,25 +120,3 @@ sql_str='show tables;'
 rs=cursor.execute(sql_str)
 rs=cursor.fetchall()
 print(rs)
-
-
-# Populate Table COURSES 
-
-print("=== Inserting a record into Courses")
-sql_str=f"INSERT INTO Courses(id, name) VALUES ('1', 'Chemistry'),  ('2', 'Computer Science'),  ('3', 'Physics'), ('4', 'Biology'), ('5', 'Discrete Mathematics'), ('6', 'Probability & Statistics');"
-print(sql_str)
-cursor.execute(sql_str)
-cnx.commit() # commit is required when you run INSERT statement, to persist new data to tables
-
-
-#Check to confirm Table COURSES was populated correctly
-
-sql_str='SELECT * FROM Courses;'
-print(sql_str)
-rs=cursor.execute(sql_str)
-rs=cursor.fetchall()
-print(rs)
-
-
-
-
