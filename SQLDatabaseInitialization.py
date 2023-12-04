@@ -16,10 +16,10 @@ cursor = cnx.cursor()
 # Testing connection to database
 
 print("=== Testing connection to the Database")
-sql_str='SELECT now();'
+sql_str = 'SELECT now();'
 print(sql_str)
-rs=cursor.execute(sql_str)
-rs=cursor.fetchall()
+rs = cursor.execute(sql_str)
+rs = cursor.fetchall()
 print(rs)
 
 
@@ -53,7 +53,7 @@ cursor.execute(sql_str2)
 # Courses Table
 sql_str3='''CREATE TABLE IF NOT EXISTS Courses (
     id INT  NOT NULL AUTO_INCREMENT,
-    name VARCHAR(100) ,
+    course_name VARCHAR(100) ,
     PRIMARY KEY(id)
 );'''
 print(sql_str3)
@@ -65,11 +65,9 @@ sql_str4='''CREATE TABLE IF NOT EXISTS Classes (
     id INT  NOT NULL AUTO_INCREMENT,
     class_name VARCHAR(100) ,
     Professor_id INT,
-    Student_id INT,
     Course_id INT,
     PRIMARY KEY(id),
     FOREIGN KEY (Professor_id) REFERENCES Professors(id),
-    FOREIGN KEY (Student_id) REFERENCES Students(id),
     FOREIGN KEY (Course_id) REFERENCES Courses(id)
 );'''
 print(sql_str4)
@@ -78,11 +76,9 @@ cursor.execute(sql_str4)
 # Codes Table
 sql_str5='''CREATE TABLE IF NOT EXISTS Codes (
     id INT  NOT NULL AUTO_INCREMENT,
-    Professor_id INT ,
     Class_id INT,
     GeneratedCode VARCHAR(100),
     PRIMARY KEY(id),
-    FOREIGN KEY (Professor_id) REFERENCES Professors(id),
     FOREIGN KEY (Class_id) REFERENCES Classes(id)
 );'''
 print(sql_str5)
@@ -90,18 +86,29 @@ cursor.execute(sql_str5)
 
 # Attendance_Records Table
 sql_str6='''CREATE TABLE IF NOT EXISTS Attendance_Records (
-    record_id INT  NOT NULL AUTO_INCREMENT,
-    Student_id INT,
-    Class_id INT,
+    id INT  NOT NULL AUTO_INCREMENT,
+    enrollment_id INT,
     Present BIT,
     Late BIT,
     Date DATE,
+    PRIMARY KEY(id),
+);'''
+print(sql_str6)
+cursor.execute(sql_str6)
+
+
+
+# Enrollments Table
+sql_str7='''CREATE TABLE IF NOT EXISTS Enrollments (
+    id INT  NOT NULL AUTO_INCREMENT,
+    Student_id INT,
+    Class_id INT,
     PRIMARY KEY(record_id),
     FOREIGN KEY (Student_id) REFERENCES Students(id),
     FOREIGN KEY (Class_id) REFERENCES Classes(id)
 );'''
-print(sql_str6)
-cursor.execute(sql_str6)
+print(sql_str7)
+cursor.execute(sql_str7)
 
 
 # Attempt to show all table names in MySQL Database to confirm tables were created successfully
