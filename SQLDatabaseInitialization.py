@@ -122,7 +122,7 @@ rs=cursor.fetchall()
 print(rs)
 
 
-# Populate Table COURSES as data in this table is fixed from start
+# Populate Table COURSES 
 
 print("=== Inserting a record into Courses")
 sql_str=f"INSERT INTO Courses(id, name) VALUES ('1', 'Chemistry'),  ('2', 'Computer Science'),  ('3', 'Physics'), ('4', 'Biology'), ('5', 'Discrete Mathematics'), ('6', 'Probability & Statistics');"
