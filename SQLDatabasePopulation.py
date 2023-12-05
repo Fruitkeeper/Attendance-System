@@ -163,6 +163,7 @@ sql_str3='''
     '''
 print(sql_str3)
 cursor.execute(sql_str3)
+cnx.commit()
 
 #Check to confirm Table ENROLLMENTS was populated correctly
 
@@ -192,7 +193,7 @@ sql_str3='''
     '''
 print(sql_str3)
 cursor.execute(sql_str3)
-
+cnx.commit()
 
 #Check to confirm Table ATTENDANCE_RECORDS was populated correctly
 
