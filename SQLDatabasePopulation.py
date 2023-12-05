@@ -171,3 +171,8 @@ print(sql_str)
 rs=cursor.execute(sql_str)
 rs=cursor.fetchall()
 print(rs)
+
+
+
+# Populate Table ATTENDANCE_RECORDS
+
