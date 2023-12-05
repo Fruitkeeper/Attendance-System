@@ -142,3 +142,32 @@ print(sql_str)
 rs=cursor.execute(sql_str)
 rs=cursor.fetchall()
 print(rs)
+
+
+
+# Populate Table ENROLLMENTS
+sql_str3='''
+    INSERT INTO Enrollments (Student_id, Class_id)
+    VALUES
+        (1, 1),
+        (2, 2),
+        (3, 3),
+        (4, 4),
+        (5, 5),
+        (6, 6),
+        (7, 7),
+        (8, 8),
+        (9, 4),
+        (10, 2)
+    ;
+    '''
+print(sql_str3)
+cursor.execute(sql_str3)
+
+#Check to confirm Table ENROLLMENTS was populated correctly
+
+sql_str='SELECT * FROM Enrollments;'
+print(sql_str)
+rs=cursor.execute(sql_str)
+rs=cursor.fetchall()
+print(rs)
