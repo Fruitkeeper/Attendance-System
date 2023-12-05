@@ -163,10 +163,41 @@ sql_str3='''
     '''
 print(sql_str3)
 cursor.execute(sql_str3)
+cnx.commit()
 
 #Check to confirm Table ENROLLMENTS was populated correctly
 
 sql_str='SELECT * FROM Enrollments;'
+print(sql_str)
+rs=cursor.execute(sql_str)
+rs=cursor.fetchall()
+print(rs)
+
+
+
+# Populate Table ATTENDANCE_RECORDS
+sql_str3='''
+    INSERT INTO Attendance_Records (enrollment_id, Present, Late, Date)
+    VALUES
+        (1, 1, 0, '2023-03-01'),
+        (2, 1, 0, '2023-03-01'),
+        (3, 0, 0, '2023-03-01'),
+        (4, 1, 0, '2023-03-01'),
+        (5, 1, 0, '2023-03-01'),
+        (6, 0, 0, '2023-03-01'),
+        (7, 1, 1, '2023-03-01'),
+        (8, 1, 1, '2023-03-01'),
+        (9, 1, 0, '2023-03-01'),
+        (10, 1, 0, '2023-03-01')
+    ;
+    '''
+print(sql_str3)
+cursor.execute(sql_str3)
+cnx.commit()
+
+#Check to confirm Table ATTENDANCE_RECORDS was populated correctly
+
+sql_str='SELECT * FROM Attendance_Records;'
 print(sql_str)
 rs=cursor.execute(sql_str)
 rs=cursor.fetchall()
