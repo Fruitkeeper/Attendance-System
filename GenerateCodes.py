@@ -11,13 +11,13 @@ def generate_random_code(length=8):
     characters = string.ascii_letters + string.digits
     return ''.join(random.choice(characters) for _ in range(length))
 
-@app.route(route="http_trigger1", auth_level=func.AuthLevel.ANONYMOUS)
-def http_trigger1(req: HttpRequest) -> HttpResponse:
+
+def main(req: HttpRequest) -> HttpResponse:
     logging.info('Python HTTP trigger function processed a request.')
 
     host='dockerlab.westeurope.cloudapp.azure.com'
     username='DUDB_1'
-    password='[YourPassword]'
+    password='4A0z062O97mYrF41wqSs2pXX_crGHuxIEy9Z7g-ogPQ'
     database='DUDB_1'
 
     try:
@@ -37,4 +37,4 @@ def http_trigger1(req: HttpRequest) -> HttpResponse:
     
     except Exception as e:
         logging.error(f"Error: {str(e)}")
-        return func.HttpHttpResponse("An error occurred while processing the request.", status_code=500)
+        return func.HttpResponse("An error occurred while processing the request.", status_code=500)

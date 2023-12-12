@@ -8,31 +8,29 @@ import azure.functions as func
 from azure.functions import HttpRequest, HttpResponse
 
 
-@app.route(route="http_trigger2", auth_level=func.AuthLevel.ANONYMOUS)
-def http_trigger2(req: func.HttpRequest) -> func.HttpResponse:
+def main(req: func.HttpRequest) -> func.HttpResponse:
     logging.info('Python HTTP trigger function processed a request.')
 
     try:
 
-        host='dockerlab.westeurope.cloudapp.azure.com',
-        username='DUDB_1',
-        password='4A0z062O97mYrF41wqSs2pXX_crGHuxIEy9Z7g-ogPQ',
-        database='DUDB_1',
-        conn = mysql.connector.connect(
-                    host=host,
-                    user=username,
-                    password=password,
-                    database=database
-                )
+        host='dockerlab.westeurope.cloudapp.azure.com'
+        username='DUDB_1'
+        password='4A0z062O97mYrF41wqSs2pXX_crGHuxIEy9Z7g-ogPQ'
+        database='DUDB_1'
+        conn = mysql.connector.connect(host=host, user=username, password=password, database=database)
         cursor = conn.cursor()
 
         cursor.execute("SELECT GeneratedCode FROM Codes")
         codes = cursor.fetchall()
+
         
-        for code in codes:
-            # Here, you can replace this print statement with your logic to display the code on your webpage.
-            print(code[0])
-            time.sleep(30)  # Wait for 30 seconds before displaying the next code
+        for code_tuple in codes:
+            code = code_tuple[0]  # Extracting the code from the tuple
+            logging.info(f"Processing code: {code}")
+            time.sleep(10)
+            cursor.execute("DELETE FROM Codes WHERE GeneratedCode = %s", (code,))  # Use a tuple or list for parameterized query
+            logging.info(f"Deleted code: {code}")
+            conn.commit()
 
         cursor.close()
         conn.close()

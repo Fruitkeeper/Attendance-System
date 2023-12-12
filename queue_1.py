@@ -11,18 +11,18 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     logging.info('Azure Function Processing a HTTP Request for Attendance Tracking')
 
     # Retrieve parameters from the request
-    student_id = req.params.get('email')
-    class_id = req.params.get('course')
+    student_id = req.params.get('Student_id')
+    class_id = req.params.get('Class_id')
     entered_code = req.params.get('input')
 
     # Check if all required parameters are provided
     if not all([student_id, class_id, entered_code]):
-        return func.HttpResponse('{"message": "Missing required parameters: email, course, or code", "status_code": 400}', status_code=400, mimetype="application/json")
+        return func.HttpResponse('{"message": "Missing required parameters: Student_id, Class_id, or code", "status_code": 400}', status_code=400, mimetype="application/json")
 
     # Database credentials
     host='dockerlab.westeurope.cloudapp.azure.com'
     username='DUDB_1'
-    password='4A0z062O97mYrF41wqSs2pXX_crGHuxIEy9Z7g-ogP'
+    password='4A0z062O97mYrF41wqSs2pXX_crGHuxIEy9Z7g-ogPQ'
     database='DUDB_1'
 
     # Define the name of the error queue
@@ -57,7 +57,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         cursor.execute("SELECT GeneratedCode FROM Codes WHERE Class_id = %s", (class_id))
         reference_code = cursor.fetchone()
 
-        if reference_code and entered_code == reference_code[0]:
+        if reference_code and entered_code == reference_code:
             # Update attendance status to 'TRUE' for the student
             cursor.execute("""
                 UPDATE Attendance_Records
