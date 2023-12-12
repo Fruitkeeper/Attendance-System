@@ -15,6 +15,8 @@ def generate_random_code(length=8):
 def main(req: HttpRequest) -> HttpResponse:
     logging.info('Python HTTP trigger function processed a request.')
 
+    class_id = req.params.get('Class_id')
+
     host='dockerlab.westeurope.cloudapp.azure.com'
     username='DUDB_1'
     password='4A0z062O97mYrF41wqSs2pXX_crGHuxIEy9Z7g-ogPQ'
@@ -29,7 +31,7 @@ def main(req: HttpRequest) -> HttpResponse:
 
         # Connect to the database and insert the codes
         for code in codes:
-            cursor.execute("INSERT INTO Codes (GeneratedCode) VALUES (%s)", (code,))
+            cursor.execute("INSERT INTO Codes (GeneratedCode, Class_id) VALUES (%s)", (code, class_id))
         conn.commit()
         conn.close()
 

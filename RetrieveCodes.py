@@ -11,6 +11,8 @@ from azure.functions import HttpRequest, HttpResponse
 def main(req: func.HttpRequest) -> func.HttpResponse:
     logging.info('Python HTTP trigger function processed a request.')
 
+    class_id = req.params.get('Class_id')
+
     try:
 
         host='dockerlab.westeurope.cloudapp.azure.com'
@@ -20,7 +22,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         conn = mysql.connector.connect(host=host, user=username, password=password, database=database)
         cursor = conn.cursor()
 
-        cursor.execute("SELECT GeneratedCode FROM Codes")
+        cursor.execute("SELECT GeneratedCode FROM Codes WHERE Class_id = %s", (class_id))
         codes = cursor.fetchall()
 
         
